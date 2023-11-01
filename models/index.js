@@ -49,4 +49,4 @@ Comment.belongsTo(Comment, {
 });
 
 
-module.exports = { User, Post, Comment, Reply }
+module.exports = { User, Post, Comment, Reply };
