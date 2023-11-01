@@ -1,12 +1,12 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
 
-    const name = document.querySelector('#').value.trim();
-    const  = document.querySelector('#').value.trim();
-    const description = document.querySelector('#').value.trim();
+    const name = document.querySelector('#sign-up').value.trim();
+    const  = document.querySelector('#login').value.trim();
+    const description = document.querySelector('#logout').value.trim();
 
-    if (name &&  && description) {
-        const response = await fetch(`/api/`, {
+    if (username && email && password) {
+        const response = await fetch(`/api/user`, {
             method: 'POST',
             body: JSON.stringify({ name, }),
             headers: {
@@ -26,7 +26,7 @@ const delButtonHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');
 
-        const response = await fetch(`/api/projects/${id}`, {
+        const response = await fetch(`/api/users/${id}`, {
             method: 'DELETE',
         });
 
