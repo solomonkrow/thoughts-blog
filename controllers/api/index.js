@@ -4,7 +4,7 @@ const postRoutes = require('./postRoutes');
 const commentRoutes = require('./commentRoutes');
 const replyRoutes = require('./replyRoutes');
 
-router.use('/users', userRoutes);
+// TODO router.use('/users', userRoutes);
 router.use('/posts', postRoutes);
 router.use('/comments', commentRoutes);
 router.use('/replies', replyRoutes);

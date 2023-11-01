@@ -11,7 +11,7 @@ Comment.init(
             autoIncrement: true,
         },
         content: {
-            type: DataTypes.VARCHAR(2500),
+            type: DataTypes.STRING(2500),
             allowNull: false,
         },
         created_at: {
@@ -23,7 +23,7 @@ Comment.init(
             defaultValue: DataTypes.NOW,
         },
         user_id: {
-            types: DataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'user',
                 key: 'id',

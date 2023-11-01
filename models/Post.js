@@ -15,7 +15,7 @@ Post.init(
             allowNull: false,
         },
         content: {
-            type: DataTypes.VARCHAR(5000),
+            type: DataTypes.STRING(5000),
             allowNull: false,
         },
         created_at: {
@@ -27,7 +27,7 @@ Post.init(
             defaultValue: DataTypes.NOW,
         },
         user_id: {
-            types: DataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'user',
                 key: 'id',
