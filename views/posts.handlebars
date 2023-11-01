@@ -1,0 +1,18 @@
+{{!-- {{ log this }} --}}
+
+<h1>{{title}} </h1>
+<h2>Created by {{user.username}} on {{format_date created_at}} </h2>
+<p>{{content}} </p> <hr>
+
+{{#each comments as |comment| }}
+
+<h4>{{comment.content}} </h4>
+
+    <p>By: {{comment.user.username}}</p>
+    
+    {{#each comment.replies as |reply| }}
+    <h5>{{reply.content}} </h5>
+    <p>By: {{reply.user.username}} </p>
+    {{/each}}
+
+{{/each}}
