@@ -36,7 +36,7 @@ Reply.init(
                 key: 'id',
             }
         }
-    
+
     },
     {
         sequelize,
