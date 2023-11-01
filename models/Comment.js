@@ -23,7 +23,7 @@ Comment.init(
             defaultValue: DataTypes.NOW,
         },
         user_id: {
-            types: DataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'user',
                 key: 'id',
