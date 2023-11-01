@@ -15,7 +15,7 @@ Post.init(
             allowNull: false,
         },
         content: {
-            type: DataTypes.VARCHAR(5000),
+            type: DataTypes.STRING(5000),
             allowNull: false,
         },
         created_at: {
