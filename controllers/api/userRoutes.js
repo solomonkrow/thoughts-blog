@@ -28,7 +28,7 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         //TODO comment out once verified working
-        // console.log(req.body); 
+        // console.log(req.body);
         const dbUserData = await User.findOne({
             where: {
                 email: req.body.email,
@@ -57,8 +57,8 @@ router.post('/login', async (req, res) => {
 
             res.json({ user: dbUserData, message: 'You are now logged in!' });
         });
-                // .status(200)
-                
+        // .status(200)
+
     } catch (err) {
         // console.log(err);
         res.status(400).json(err);
