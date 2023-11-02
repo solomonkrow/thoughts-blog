@@ -16,10 +16,19 @@ router.get('/', async (req, res) => {
 
         res.render('homepage', {
             posts,
+            loggedIn: req.session.loggedIn
         });
     } catch (err) {
         res.status(500).json(err);
     }
+});
+
+router.get('/signup', (req, res) => {
+    res.render('signup');
+});
+
+router.get('/login', (req, res) => {
+    res.render('login');
 });
 
 /* router.get('/', async (req, res) => {
