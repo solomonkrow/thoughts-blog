@@ -40,22 +40,22 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Profile</a>
               </li>
-              <div>
-                {{#if req.session.loggedIn}}
+              
+                {{!-- {{#if req.session.loggedIn}} --}}
               <li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
               </li>
-              {{else}}
+              {{!-- {{else}} --}}
               <li class="nav-item">
                 <a class="nav-link" href="/logout">Logout</a>
               </li>
-              {{/if}}
-              </div>
+              {{!-- {{/if}} --}}
+              
 
-              {{#if req.session.loggedIn}}
+              {{!-- {{#if req.session.loggedIn}} --}}
               <li class="nav-item">
                 <a class="nav-link" href="/signup">Signup</a>
-                {{/if}}
+                {{!-- {{/if}} --}}
               </li>
             </ul>
           </div>
