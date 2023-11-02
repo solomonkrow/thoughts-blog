@@ -16,18 +16,18 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const postData = await Post.destroy({
-        where: {
-            id: req.params.id,
-            user_id: req.session.user_id
-        },
-    });
+            where: {
+                id: req.params.id,
+                user_id: req.session.user_id
+            },
+        });
 
-    if (!postData) {
-        res.status(400).json({ message: 'No post with that ID'});
-        return;
-    }
+        if (!postData) {
+            res.status(400).json({ message: 'No post with that ID'});
+            return;
+        }
 
-    res.status(200).json(postData);
+        res.status(200).json(postData);
     } catch (err) {
         res.status(500).json(err);
     }
