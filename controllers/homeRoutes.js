@@ -105,6 +105,33 @@ router.get('/posts/:id', async (req, res) => {
     }
 });
 
+// GET user posts for user view
+router.get('/user', async (req, res) => {
+    try {
+        // Find the logged in user based on the session ID
+        const postData = await Post.findAll({
+            where: {
+                user_id: req.session.user_id
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                }
+            ]
+        });
+
+        const userPosts = postData.map((posts) => posts.get({ plain: true }));
+        console.log(userPosts);
+        res.render('user', {
+            userPosts,
+            logged_in: req.session.loggedIn,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 router.get('comments', async (req, res) => {
     try {
         const commentData = await Comment.findByPk(req.params.id, {
