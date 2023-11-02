@@ -3,8 +3,10 @@ module.exports = {
         return date.toLocaleTimeString();
     },
     format_date: (date) => {
-        return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${
-            new Date(date).getFullYear()
+        return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()
         }`;
+    },
+    current_month_day: () => {
+        return `${today.getMonth() + 1}/${today.getDate()}`;
     },
 };
