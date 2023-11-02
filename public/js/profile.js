@@ -1,14 +1,13 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
+    // TODO update IDs below from views to get req.body
+    const title = document.querySelector('#need-id-from-view').value.trim();
+    const content = document.querySelector('#need-id-from-view').value.trim();
 
-    const name = document.querySelector('#sign-up').value.trim();
-    const  = document.querySelector('#login').value.trim();
-    const description = document.querySelector('#logout').value.trim();
-
-    if (username && email && password) {
-        const response = await fetch(`/api/user`, {
+    if (title && content) {
+        const response = await fetch('/api/posts', {
             method: 'POST',
-            body: JSON.stringify({ name, }),
+            body: JSON.stringify({ title, content }),
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -26,7 +25,7 @@ const delButtonHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');
 
-        const response = await fetch(`/api/users/${id}`, {
+        const response = await fetch(`/api/posts/${id}`, {
             method: 'DELETE',
         });
 
@@ -37,11 +36,11 @@ const delButtonHandler = async (event) => {
         }
     }
 };
-
+// TODO update classes below for listeners
 document
-    .querySelector('.')
+    .querySelector('.need-class-from-view')
     .addEventListener('submit', newFormHandler);
 
 document
-    .querySelector('.')
+    .querySelector('.need-class-from-view')
     .addEventListener('click', delButtonHandler);
