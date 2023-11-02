@@ -1,18 +1,43 @@
 {{!-- {{ log this }} --}}
+<div class="m-2">
+  <div class="container">
+    <h1>{{title}} </h1>
+    <p>Created by {{user.username}} on {{format_date created_at}} </p>
+    <div class="d-flex">
+      <p class="container-fluid"> {{content}} </p>
+      <div class="container-fluid d-flex justify-content-end">
+        <button type="button" class="btn btn-info" >Add Comment</button>
+      </div>
+    </div>
+  </div>
 
-<h1>{{title}} </h1>
-<h2>Created by {{user.username}} on {{format_date created_at}} </h2>
-<p>{{content}} </p> <hr>
+  <hr />
 
-{{#each comments as |comment| }}
-
-<h4>{{comment.content}} </h4>
-
-    <p>By: {{comment.user.username}}</p>
+  <div class="container" style="text-indent: 4em;">
+    {{#each comments as |comment|}}
     
-    {{#each comment.replies as |reply| }}
-    <h5>{{reply.content}} </h5>
-    <p>By: {{reply.user.username}} </p>
-    {{/each}}
+      <h4>{{comment.content}} </h4>
+      <div class="d-flex">
+      <p class="container-fluid" style="text-indent: 5em;">-By:
+        {{comment.user.username}}
+        on
+        {{comment.created_at}}
+      </p>
+      <div class="container-fluid d-flex justify-content-end">
+        <button type="button" class="btn btn-info">Add Reply</button>
+      </div></div>
 
-{{/each}}
+      <div style="text-indent: 8em;">
+        {{#each comment.replies as |reply|}}
+          <h5>{{reply.content}} </h5>
+          <p style="text-indent: 9em;">-By:
+            {{reply.user.username}}
+            on
+            {{reply.created_at}}
+          </p>
+        {{/each}}
+      </div>
+
+    {{/each}}
+  </div>
+</div>
