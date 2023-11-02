@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
 
-app.get('/historical-events', routeHandler.getHistoricalEvents);
+/* app.get('/historical-events', routeHandler.getHistoricalEvents); */
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Now listening on ${PORT}`));
