@@ -31,46 +31,6 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-/* router.get('/', async (req, res) => {
-    try {
-        const commentData = await Comment.findAll({
-            include: [
-                {
-                    model: User,
-                    attributes: ['username']
-                }
-            ]
-        });
-        const comments = commentData.map((comment) => comment.get({ plain: true}));
-
-        res.render('homepage', {
-            comments
-        });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-}); */
-
-/* router.get('/', async (req, res) => {
-    try {
-        const replyData = await Reply.findAll({
-            include: [
-                {
-                    model: User,
-                    attributes: ['username']
-                }
-            ]
-        });
-        const replies = replyData.map((reply) => reply.get({ plain: true}));
-
-        res.render('homepage', {
-            replies
-        });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-}); */
-
 router.get('/posts/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
@@ -115,10 +75,7 @@ router.get('/user', async (req, res) => {
                 user_id: req.session.user_id
             },
             include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                }
+                User,
             ]
         });
 
@@ -127,13 +84,11 @@ router.get('/user', async (req, res) => {
 
         res.render('user', {
             ...userPosts,
-            logged_in: req.session.loggedIn,
+            loggedIn: req.session.loggedIn,
         });
     } catch (err) {
         res.status(500).json(err);
     }
 });
-
-
 
 module.exports = router;
