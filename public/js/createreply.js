@@ -3,7 +3,7 @@ const newFormHandler = async (event) => {
     // TODO verify id's for title and content below
     const content = document.querySelector('#reply-content').value.trim();
     // TODO verify route below
-    if (title && content) {
+    if (content) {
         const response = await fetch('/api/blogpost', {
             method: 'POST',
             body: JSON.stringify({ title, content }),
@@ -15,7 +15,7 @@ const newFormHandler = async (event) => {
         if (response.ok) {
             document.location.replace('/dashboard');
         } else {
-            alert('Failed to create blogpost');
+            alert('Failed to create reply');
         }
     }
 };

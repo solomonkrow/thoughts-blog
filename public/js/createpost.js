@@ -5,7 +5,7 @@ const newFormHandler = async (event) => {
     const content = document.querySelector('#post-content').value.trim();
     // TODO verify route below
     if (title && content) {
-        const response = await fetch('/api/blogpost', {
+        const response = await fetch('/api/posts', {
             method: 'POST',
             body: JSON.stringify({ title, content }),
             headers: {
@@ -14,9 +14,9 @@ const newFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard');
+            document.location.replace('/');
         } else {
-            alert('Failed to create blogpost');
+            alert('Failed to create post');
         }
     }
 };
@@ -26,7 +26,7 @@ const delButtonHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');
 
-        const response = await fetch(`/api/blogpost/${id}`, {
+        const response = await fetch(`/api/posts/${id}`, {
             method: 'DELETE',
         });
 
