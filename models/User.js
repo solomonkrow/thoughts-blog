@@ -43,9 +43,9 @@ User.init(
             }
         },
         // TODO how do we address profile photos? Do we need a URL or ID. Multer?
-        profile_photo: {
+        profile_photoURL: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
         }
     },
     {
