@@ -1,4 +1,4 @@
-{{ log this }}
+{{!-- {{ log this }} --}}
 <div class="m-2">
   <div class="container">
     <h1>{{title}} </h1>
@@ -33,12 +33,13 @@
           <button
             type="button"
             class="btn"
+            data-reply="{{comment.id}}"
             style="background-color: #fccd04;"
+            data-bs-toggle="modal"
+          data-bs-target="#add-reply"
           >Add Reply</button>
         </div>
       </div>
-
-      
 
       <div style="text-indent: 8em;">
         {{#each comment.replies as |reply|}}
@@ -51,8 +52,10 @@
         {{/each}}
         <hr />
       </div>
-
+{{ log reply}}
     {{/each}}
+    
+  {{!-- COMMENT FORM --}}
     <div
       class="modal fade"
       id="add-comment"
@@ -98,6 +101,59 @@
               type="button"
               class="btn"
               id="submit-comment-btn"
+              style="background-color: #fccd04;"
+            >Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{!-- REPLY FORM --}}
+    <div
+      class="modal fade"
+      id="add-reply"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="add-replyLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="add-replyLabel">New Reply</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="new-reply-form">
+
+              <div class="mb-1">
+                <input type="hidden"
+                name="comment-id"
+                id="hidden-comment"
+                >
+                <label
+                  for="reply-content"
+                  class="col-form-label"
+                >Reply:</label>
+                <textarea class="form-control" id="reply-content"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >Cancel</button>
+            <button
+              type="button"
+              class="btn"
+              id="submit-reply-btn"
               style="background-color: #fccd04;"
             >Submit</button>
           </div>

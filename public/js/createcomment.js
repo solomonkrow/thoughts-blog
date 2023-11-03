@@ -2,11 +2,6 @@ const newCommentHandler = async (event) => {
     event.preventDefault();
 
     console.log('form submitted');
-    console.log(event);
-
-    // if (event.target.hasAttribute('data-id')) {
-    // const id = event.target.getAttribute('data-id');
-    // console.log(id);
 
     const content = document.querySelector('#comment-content').value.trim();
     const post_id = document.querySelector('input[name="post-id"]').value;
@@ -33,7 +28,7 @@ const newCommentHandler = async (event) => {
 };
 
 // TODO verify route below
-const delCommentHandler = async (event) => {
+/* const delCommentHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');
 
@@ -47,7 +42,7 @@ const delCommentHandler = async (event) => {
             alert('Failed to delete comment');
         }
     }
-};
+}; */
 
 /* document
     .querySelector('.new-comment-form')
