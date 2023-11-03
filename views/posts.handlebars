@@ -1,4 +1,4 @@
-{{!-- {{ log this }} --}}
+{{ log this }}
 <div class="m-2">
   <div class="container">
     <h1>{{title}} </h1>
@@ -6,26 +6,39 @@
     <div class="d-flex">
       <p class="container-fluid"> {{content}} </p>
       <div class="container-fluid d-flex justify-content-end">
-        <button type="button" class="btn" style="background-color: #fccd04;" >Add Comment</button>
+        <button
+          type="button"
+          class="btn"
+          data-bs-toggle="modal"
+          data-bs-target="#add-comment"
+          style="background-color: #fccd04;"
+        >Add Comment</button>
       </div>
     </div>
   </div>
 
-  <hr />
+  <hr/>
 
   <div class="container" style="text-indent: 4em;">
     {{#each comments as |comment|}}
-    
+
       <h4>{{comment.content}} </h4>
       <div class="d-flex">
-      <p class="container-fluid" style="text-indent: 5em;">-By:
-        {{comment.user.username}}
-        on
-        {{comment.created_at}}
-      </p>
-      <div class="container-fluid d-flex justify-content-end">
-        <button type="button" class="btn" style="background-color: #fccd04;">Add Reply</button>
-      </div></div>
+        <p class="container-fluid" style="text-indent: 5em;">-By:
+          {{comment.user.username}}
+          on
+          {{comment.created_at}}
+        </p>
+        <div class="container-fluid d-flex justify-content-end">
+          <button
+            type="button"
+            class="btn"
+            style="background-color: #fccd04;"
+          >Add Reply</button>
+        </div>
+      </div>
+
+      
 
       <div style="text-indent: 8em;">
         {{#each comment.replies as |reply|}}
@@ -36,9 +49,61 @@
             {{reply.created_at}}
           </p>
         {{/each}}
+        <hr />
       </div>
 
     {{/each}}
+    <div
+      class="modal fade"
+      id="add-comment"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="add-commentLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="add-commentLabel">New Comment</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="new-comment-form">
+
+              <div class="mb-1">
+                <input type="hidden"
+                name="post-id"
+                value="{{id}}">
+                <label
+                  for="comment-content"
+                  class="col-form-label"
+                >Comment:</label>
+                <textarea class="form-control" id="comment-content"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >Cancel</button>
+            <button
+              type="button"
+              class="btn"
+              id="submit-comment-btn"
+              style="background-color: #fccd04;"
+            >Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
