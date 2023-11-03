@@ -1,11 +1,13 @@
-const newFormHandler = async (event) => {
+const newPostHandler = async (event) => {
     event.preventDefault();
-    // TODO verify id's for title and content below
+    console.log('form submiited');
     const title = document.querySelector('#post-title').value.trim();
+    console.log(title);
     const content = document.querySelector('#post-content').value.trim();
+    console.log(content);
     // TODO verify route below
     if (title && content) {
-        const response = await fetch('/api/blogpost', {
+        const response = await fetch('/api/posts', {
             method: 'POST',
             body: JSON.stringify({ title, content }),
             headers: {
@@ -14,15 +16,15 @@ const newFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard');
+            document.location.replace('/');
         } else {
-            alert('Failed to create blogpost');
+            alert('Failed to create post');
         }
     }
 };
 
 // TODO verify route below
-const delButtonHandler = async (event) => {
+const delPostHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');
 
@@ -31,7 +33,7 @@ const delButtonHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard');
+            document.location.replace('/');
         } else {
             alert('Failed to delete project');
         }
@@ -40,8 +42,13 @@ const delButtonHandler = async (event) => {
 
 document
     .querySelector('.new-post-form')
-    .addEventListener('submit', newFormHandler);
+    .addEventListener('submit', newPostHandler);
 
 document
+    .querySelector('#submit-post-btn')
+    .addEventListener('click', newPostHandler);
+    
+
+/* document
     .querySelector('.post-list')
-    .addEventListener('click', delButtonHandler);
+    .addEventListener('click', delPostHandler); */
