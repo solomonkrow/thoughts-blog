@@ -46,7 +46,7 @@
                 class="btn"
                 style="background-color: #fccd04;"
                 data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"
+                data-bs-target="#add-post"
               >Add post</button>
             </div>
           {{else}}
@@ -62,18 +62,18 @@
           {{/if}}
 
           <div
-            class="modal fade new-post-form"
-            id="staticBackdrop"
+            class="modal fade"
+            id="add-post"
             data-bs-backdrop="static"
             data-bs-keyboard="false"
             tabindex="-1"
-            aria-labelledby="staticBackdropLabel"
+            aria-labelledby="add-postLabel"
             aria-hidden="true"
           >
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="staticBackdropLabel">New Post</h1>
+                  <h1 class="modal-title fs-5" id="add-postLabel">New Post</h1>
                   <button
                     type="button"
                     class="btn-close"
@@ -82,14 +82,14 @@
                   ></button>
                 </div>
                 <div class="modal-body">
-                  <form>
+                  <form class="new-post-form">
                     <div class="mb-3">
-            <label for="recipient-name" class="col-form-label" id="post-title">Title:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <label for="post-title" class="col-form-label">Title:</label>
+            <input type="text" class="form-control" id="post-title">
           </div>
           <div class="mb-3">
-            <label for="message-text" class="col-form-label" id="post-content">Content:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="post-content" class="col-form-label">Content:</label>
+            <textarea class="form-control" id="post-content"></textarea>
           </div>
                   </form>
                 </div>
@@ -102,7 +102,7 @@
                   <button
                     type="button"
                     class="btn"
-                    
+                    id="submit-post-btn"
                     style="background-color: #fccd04;"
                   >Submit</button>
                 </div>
@@ -154,5 +154,7 @@
   ></script>
   {{#if loggedIn}}
     <script src="/js/logout.js"></script>
+    <script src="/js/createpost.js"></script>
+    <script src="/js/createcomment.js"></script>
   {{/if}}
 </html>
