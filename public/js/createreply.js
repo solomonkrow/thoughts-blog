@@ -1,4 +1,4 @@
-const newFormHandler = async (event) => {
+const newReplyHandler = async (event) => {
     event.preventDefault();
     // TODO verify id's for title and content below
     const content = document.querySelector('#reply-content').value.trim();
@@ -21,7 +21,7 @@ const newFormHandler = async (event) => {
 };
 
 // TODO verify route below
-const delButtonHandler = async (event) => {
+const delReplyHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
         const id = event.target.getAttribute('data-id');
 
@@ -39,8 +39,8 @@ const delButtonHandler = async (event) => {
 
 document
     .querySelector('.new-reply-form')
-    .addEventListener('submit', newFormHandler);
+    .addEventListener('submit', newReplyHandler);
 
 document
     .querySelector('.reply-list')
-    .addEventListener('click', delButtonHandler);
+    .addEventListener('click', delReplyHandler);

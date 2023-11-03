@@ -1,8 +1,10 @@
-const newFormHandler = async (event) => {
+const newPostHandler = async (event) => {
     event.preventDefault();
-    // TODO verify id's for title and content below
+    console.log('form submiited');
     const title = document.querySelector('#post-title').value.trim();
+    console.log(title);
     const content = document.querySelector('#post-content').value.trim();
+    console.log(content);
     // TODO verify route below
     if (title && content) {
         const response = await fetch('/api/posts', {
@@ -22,26 +24,31 @@ const newFormHandler = async (event) => {
 };
 
 // TODO verify route below
-const delButtonHandler = async (event) => {
-    if (event.target.hasAttribute('data-id')) {
-        const id = event.target.getAttribute('data-id');
+// const delPostHandler = async (event) => {
+//     if (event.target.hasAttribute('data-id')) {
+//         const id = event.target.getAttribute('data-id');
 
-        const response = await fetch(`/api/posts/${id}`, {
-            method: 'DELETE',
-        });
+//         const response = await fetch(`/api/posts/${id}`, {
+//             method: 'DELETE',
+//         });
 
-        if (response.ok) {
-            document.location.replace('/dashboard');
-        } else {
-            alert('Failed to delete project');
-        }
-    }
-};
+//         if (response.ok) {
+//             document.location.replace('/');
+//         } else {
+//             alert('Failed to delete project');
+//         }
+//     }
+// };
 
 document
     .querySelector('.new-post-form')
-    .addEventListener('submit', newFormHandler);
+    .addEventListener('submit', newPostHandler);
 
 document
+    .querySelector('#submit-post-btn')
+    .addEventListener('click', newPostHandler);
+
+
+/* document
     .querySelector('.post-list')
-    .addEventListener('click', delButtonHandler);
+    .addEventListener('click', delPostHandler); */
