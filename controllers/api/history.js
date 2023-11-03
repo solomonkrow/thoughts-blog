@@ -1,29 +1,25 @@
+const express = require('express');
+const router = express.Router();
 const axios = require('axios');
 
-const API_URL = 'https://api-ninjas.com/api/historicalevents';
-const AUTH_TOKEN = 'LutFz+dQF3uzgpv2j0CVdQ==PvQI8qBMn4WfrMp'; // Replace this with your actual authentication token
+router.get('/', async (req, res) => {
+    const options = {
+        method: 'GET',
+        url: 'https://today-in-history.p.rapidapi.com/thisday',
+        headers: {
+            'X-RapidAPI-Key': 'a5aa8fb9e3msh1d27ab44aa1f504p19e952jsn5ed0bf30f897',
+            'X-RapidAPI-Host': 'today-in-history.p.rapidapi.com',
+        },
+    };
 
-app.get('/historical-events', async (req, res) => {
     try {
-        // Make a GET request to the Historical Events API with the authentication token in the headers
-        const response = await axios.get(API_URL, {
-            headers: {
-                Authorization: `Bearer ${AUTH_TOKEN}`
-            }
-        });
-
-        // Extract the data from the API response
-        const historicalEvents = response.data;
-
-        // Send the historical events as a JSON response
-        res.json(historicalEvents);
+        const response = await axios.request(options);
+        res.json(response.data);
     } catch (error) {
-        // Handle errors, such as network issues or API errors
-        console.error('Error fetching historical events:', error);
+        console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
-module.exports = {
-    getHistoricalEvents,
-};
+
+module.exports = router;

@@ -4,7 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
-const history = require('./history');
+const historyRouter = require('./api/routes/history');
 
 
 const sequelize = require('./config/connection');
@@ -40,8 +40,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
+app.use('/history', historyRouter);
 
-app.get('/historical-events', history.getHistoricalEvents);
+
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Now listening on ${PORT}`));
