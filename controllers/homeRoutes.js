@@ -99,6 +99,7 @@ router.get('/posts/:id', async (req, res) => {
     console.log(posts.comments[0].replies.username); */
         res.render('posts', {
             ...posts,
+            loggedIn: req.session.loggedIn
         });
     } catch (err) {
         res.status(500).json(err);
@@ -123,8 +124,9 @@ router.get('/user', async (req, res) => {
 
         const userPosts = postData.map((posts) => posts.get({ plain: true }));
         console.log(userPosts);
+
         res.render('user', {
-            userPosts,
+            ...userPosts,
             logged_in: req.session.loggedIn,
         });
     } catch (err) {
@@ -132,46 +134,6 @@ router.get('/user', async (req, res) => {
     }
 });
 
-router.get('comments', async (req, res) => {
-    try {
-        const commentData = await Comment.findByPk(req.params.id, {
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
-            ],
-        });
 
-        const comments = commentData.get({ plain: true });
-
-        res.render('', {
-            ...comments,
-        });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
-router.get('replies', async (req, res) => {
-    try {
-        const replyData = await Reply.findByPk(req.params.id, {
-            include: [
-                {
-                    model: User,
-                    attributes: ['username'],
-                },
-            ],
-        });
-
-        const replies = replyData.get({ plain: true });
-
-        res.render('', {
-            ...replies,
-        });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
 
 module.exports = router;

@@ -7,6 +7,7 @@ module.exports = {
         }`;
     },
     current_month_day: () => {
+        const today = new Date();
         return `${today.getMonth() + 1}/${today.getDate()}`;
     },
 };
