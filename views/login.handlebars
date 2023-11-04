@@ -1,22 +1,41 @@
-<div class="row">
-  <div class="col-4 mx-auto my-4 p-3" style="border: 2px solid black; border-radius: 15px">
-    <h2>Login</h2>
-
-    <form class="form login-form p-3">
-      <div class="form-group p-2">
-        <label for="email-login">Email:</label>
-        <input class="form-input" type="text" id="email-login" />
-      </div>
-      <div class="form-group p-2">
-        <label for="password-login">Password:</label>
-        <input class="form-input" type="password" id="password-login" />
-      </div>
-      <div class="form-group p-3">
-        <button class="btn btn-primary" type="submit">Login</button>
-      </div>
-    </form>
+<section
+  class="card col-sm-7 col-md-7 col-lg-5 col-xl-3 mx-auto my-5"
+  style="border: 4px solid #d9b08c; border-radius: 15px; background-color: #d1e8e2;"
+>
+  <div class="card-header" style="background-color: #d9b08c;">
+    <h2 class="card-title p-1 m-2">Login</h2>
   </div>
-  
-</div>
+  <form class="card-body form signup-form mt-3 d-flex flex-column">
+    </div>
+    <div class="form-group mb-3 d-flex justify-content-center">
+      <label for="email-signup">Email:</label>
+      <input
+        class="form-input mx-2"
+        type="text"
+        id="email-signup"
+        placeholder="Enter email"
+      />
+    </div>
+    <div class="form-group mb-3 d-flex justify-content-center">
+      <label for="password-signup">Password:</label>
+      <input
+        class="form-input mx-2"
+        type="password"
+        id="password-signup"
+        placeholder="Enter password"
+      />
+    </div>
+    <div
+      class="card-footer form-group mt-3 d-flex justify-content-center"
+      style="background-color: #d1e8e2;"
+    >
+      <button
+        class="btn mt-3"
+        style="background-color: #ffcb9a;"
+        type="submit"
+      >Login</button>
+    </div>
+  </form>
+</section>
 
-<script src="./js/login.js"></script>
+<script src="/js/login.js"></script>
