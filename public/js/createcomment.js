@@ -5,12 +5,12 @@ const newCommentHandler = async (event) => {
 
     const content = document.querySelector('#comment-content').value.trim();
     const post_id = document.querySelector('input[name="post-id"]').value;
-    
+
     console.log(post_id);
     console.log(content);
 
     if (content) {
-        const response = await fetch(`/api/comments`, {
+        const response = await fetch('/api/comments', {
             method: 'POST',
             body: JSON.stringify({ content, post_id}),
             headers: {

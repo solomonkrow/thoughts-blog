@@ -1,23 +1,50 @@
-<div class="col-4 mx-auto my-4 p-3" style="border: 2px solid black; border-radius: 15px; background-color: white;">
-    <h2 class="p-3">Signup</h2>
-
-    <form class="form signup-form p-3">
-      <div class="form-group p-2">
-        <label for="username-signup">Username:</label>
-        <input class="form-input" type="text" id="name-signup" />
-      </div>
-      <div class="form-group p-2">
-        <label for="email-signup">Email:</label>
-        <input class="form-input" type="text" id="email-signup" />
-      </div>
-      <div class="form-group p-2">
-        <label for="password-signup">Password:</label>
-        <input class="form-input" type="password" id="password-signup" />
-      </div>
-      <div class="form-group p-3">
-        <button class="btn btn-primary" type="submit">Signup</button>
-      </div>
-    </form>
+<section
+{{!-- sm: 576px|md: 768px|lg: 992px|xl: 1200px --}}
+  class="card col-sm-7 col-md-7 col-lg-5 col-xl-3 mx-auto my-5"
+  style="border: 4px solid #d9b08c; border-radius: 15px; background-color: #d1e8e2;"
+>
+  <div class="card-header" style="background-color: #d9b08c;">
+    <h2 class="card-title p-1 m-2">Signup</h2>
   </div>
+  <form class="card-body form signup-form mt-3 d-flex flex-column">
+    <div class="form-group mb-3 d-flex justify-content-center">
+      <label for="username-signup">Username:</label>
+      <input
+        class="form-input ms-2 me-4"
+        type="text"
+        id="name-signup"
+        placeholder="Enter username"
+      />
+    </div>
+    <div class="form-group mb-3 d-flex justify-content-center">
+      <label for="email-signup">Email:</label>
+      <input
+        class="form-input ms-2 me-4"
+        type="text"
+        id="email-signup"
+        placeholder="Enter email"
+      />
+    </div>
+    <div class="form-group mb-2 d-flex justify-content-center">
+      <label for="password-signup">Password:</label>
+      <input
+        class="form-input ms-3 me-4"
+        type="password"
+        id="password-signup"
+        placeholder="Enter password"
+      />
+    </div>
+    <div
+      class="card-footer form-group mt-3 d-flex justify-content-center"
+      style="background-color: #d1e8e2;"
+    >
+      <button
+        class="btn mt-3"
+        style="background-color: #ffcb9a;"
+        type="submit"
+      >Signup</button>
+    </div>
+  </form>
+</section>
 
-  <script src="/js/signup.js"></script>
+<script src="/js/signup.js"></script>
