@@ -1,10 +1,10 @@
 {{!-- {{ log this }} --}}
-<section class="container-fluid d-flex justify-content-center">
+<section class="post-list container-fluid d-flex justify-content-center">
 {{!-- sm: 576px|md: 768px|lg: 992px|xl: 1200px --}}
   <div class="card col-sm-11 col-md-10 col-lg-9 col-xl-9 m-4" style="border: 4px solid #d9b08c;border-radius:20px">
-    <section class="container card-header" style="background-color: #d9b08c; border-top-radius:20px">
+    <section class="container-fluid card-header" style="background-color: #d9b08c; border-top-radius:20px">
       <div class="d-flex">
-        <div class="container-fluid">
+        <div class="container-fluid" data-id="{{id}}">
           <h1 class="card-title mt-3">{{title}}</h1>
           <p class="container card-subtitle mb-5">Created by
             {{user.username}}
@@ -15,8 +15,10 @@
         {{! TRASH BUTTON }}
         {{#if loggedIn}}
           <div class="container-fluid d-flex justify-content-end">
-            <button type="button" class="btn" id="post-del-btn">
-              <i class="bi-trash" style="font-size: 2rem; color: #d1e8e2;"></i>
+            <button type="button" class="btn" id="post-del-btn"
+            data-id="{{id}}">
+            {{log id}}
+              <i class="bi-trash" style="font-size: 2rem; color: red;"></i>
             </button>
           </div>
         {{else}}
@@ -30,7 +32,7 @@
         <div class="container-fluid d-flex justify-content-end">
           <button
             type="button"
-            class="btn"
+            class="btn my-2"
             data-bs-toggle="modal"
             data-bs-target="#add-comment"
             style="background-color: #fccd04;"
@@ -41,27 +43,28 @@
 
     
     {{! COMMENT THREAD }}
-    <section class="container card-body" style="text-indent: 4em;background-color: grey">
+    <section class="container-fluid card-body" style="text-indent: 3em;background-color: #d1e8e2">
       {{#each comments as |comment|}}
         <div class="d-flex">
           <div class="container-fluid">
-            <p class="mb-4">{{comment.content}} </p>
+            <p class="mb-3">{{comment.content}} </p>
           </div>
-          {{#if loggedIn}}
+          {{!-- DELETE BUTTON --}}
+          
             <div class="container-fluid d-flex justify-content-end">
-              <button type="button" class="btn" id="post-del-btn">
+              <button type="button" class="btn" id="comment-del-btn">
                 <i
                   class="bi-trash"
-                  style="font-size: 1.5rem; color: #d1e8e2;"
+                  style="font-size: 1.5rem; color: red;"
                 ></i>
               </button>
             </div>
 
-          {{/if}}
+          
         </div>
 
         <div class="d-flex">
-          <p class="container-fluid font-italic" style="text-indent: 5em;">-By:
+          <p class="container-fluid font-italic" style="text-indent: 4em;">-By:
             {{comment.user.username}}
             on
             {{comment.created_at}}
@@ -78,15 +81,15 @@
           </div>
         </div>
         {{! REPLY THREAD }}
-        <ul class="card-footer" style="text-indent: 8em;background-color: lightblue">
+        <ul class="card-footer container-fluid" style="text-indent: 6em;background-color: #d1e8e2">
           {{#each comment.replies as |reply|}}
-            <li><p class="">{{reply.content}} </p>
-            <p class="font-italic" style="text-indent: 9em; ">-By:
-              {{reply.user.username}}
-              on
-              {{reply.created_at}}
-            </p></li>
-            
+            <li class="reply-li mb-4" style="">
+              {{reply.content}} 
+              <p class="reply-li-user mt-2" style="text-indent: 8em;">
+                -By: {{reply.user.username}} on {{reply.created_at}}
+              </p>    
+            </li>
+              <hr>
           {{/each}}
           
         </ul>
@@ -199,3 +202,4 @@
     </section>
   </div>
 </section>
+

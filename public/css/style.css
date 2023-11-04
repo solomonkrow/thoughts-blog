@@ -4,3 +4,8 @@
     margin-right: 12px;
 }
 
+ul {
+    list-style-image: url(../images/arrow-90deg-up.svg);
+    /* arrow-90deg-up */
+    list-style-position: inside;
+}
