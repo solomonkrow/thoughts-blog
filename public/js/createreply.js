@@ -50,7 +50,7 @@ document
 document.addEventListener('click', (event)=> {
     event.preventDefault();
     if (event.target.hasAttribute('data-reply')) {
-       const commentId = event.target.getAttribute('data-reply')
-       document.querySelector("#hidden-comment").value = commentId;
+        const commentId = event.target.getAttribute('data-reply');
+        document.querySelector('#hidden-comment').value = commentId;
     }
 });
