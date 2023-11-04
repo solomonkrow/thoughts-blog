@@ -58,7 +58,6 @@ router.post('/login', async (req, res) => {
             res.json({ user: dbUserData, message: 'You are now logged in!' });
         });
         // .status(200)
-
     } catch (err) {
         // console.log(err);
         res.status(400).json(err);
@@ -76,4 +75,22 @@ router.post('/logout', (req, res) => {
     }
 });
 
+router.post('/upload', parser.single('image'), async (req, res) => {
+    try {
+        if (!req.file) {
+            throw new Error('No image file provided');
+        }
+        const imageUrl = req.file.path;
+
+        const savedImage = await Image.create({
+            imageUrl: imageUrl,
+
+        });
+
+        res.json({ imageUrl: savedImage.imageUrl });
+    } catch (error) {
+        console.error('Error uploading image:', error.message);
+        res.status(500).json({ error: error.message });
+    }
+});
 module.exports = router;
