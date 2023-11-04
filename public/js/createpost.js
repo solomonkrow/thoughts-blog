@@ -46,13 +46,13 @@ document
     .addEventListener('click', newPostHandler);
 
 document
-    .querySelector('#post-del-btn')
+    .querySelector('.post-list')
     .addEventListener('click', delPostHandler);
 
-/* document.addEventListener('click', (event) => {
+document.addEventListener('click', (event) => {
     event.preventDefault();
     if (event.target.hasAttribute('data-id')) {
         const postId = event.target.getAttribute('data-id');
         document.querySelector('.post-list').value = postId;
     }
-}); */
+});
