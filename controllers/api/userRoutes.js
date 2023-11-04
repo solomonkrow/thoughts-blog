@@ -8,7 +8,8 @@ router.post('/signup', async (req, res) => {
     try {
         console.log(req.body); //TODO comment out once verified working
         const dbUserData = await User.create({
-            username: req.body.email,
+            username: req.body.username,
+            email: req.body.email,
             password: req.body.password,
         });
 
