@@ -1,165 +1,201 @@
 {{!-- {{ log this }} --}}
-<div class="m-2">
-  <div class="container">
-    <h1>{{title}} </h1>
-    <p>Created by {{user.username}} on {{format_date created_at}} </p>
-    <div class="d-flex">
-      <p class="container-fluid"> {{content}} </p>
-      <div class="container-fluid d-flex justify-content-end">
-        <button
-          type="button"
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#add-comment"
-          style="background-color: #fccd04;"
-        >Add Comment</button>
-      </div>
-    </div>
-  </div>
-
-  <hr/>
-
-  <div class="container" style="text-indent: 4em;">
-    {{#each comments as |comment|}}
-
-      <h4>{{comment.content}} </h4>
+<section class="container-fluid d-flex justify-content-center">
+{{!-- sm: 576px|md: 768px|lg: 992px|xl: 1200px --}}
+  <div class="card col-sm-11 col-md-10 col-lg-9 col-xl-9 m-4" style="border: 4px solid #d9b08c;border-radius:20px">
+    <section class="container card-header" style="background-color: #d9b08c; border-top-radius:20px">
       <div class="d-flex">
-        <p class="container-fluid" style="text-indent: 5em;">-By:
-          {{comment.user.username}}
-          on
-          {{comment.created_at}}
-        </p>
+        <div class="container-fluid">
+          <h1 class="card-title mt-3">{{title}}</h1>
+          <p class="container card-subtitle mb-5">Created by
+            {{user.username}}
+            on
+            {{format_date created_at}}
+          </p>
+        </div>
+        {{! TRASH BUTTON }}
+        {{#if loggedIn}}
+          <div class="container-fluid d-flex justify-content-end">
+            <button type="button" class="btn" id="post-del-btn">
+              <i class="bi-trash" style="font-size: 2rem; color: #d1e8e2;"></i>
+            </button>
+          </div>
+        {{else}}
+
+        {{/if}}
+      </div>
+
+      {{! COMMENT BUTTON }}
+      <div class="d-flex">
+        <p class="container-fluid card-text"> {{content}} </p>
         <div class="container-fluid d-flex justify-content-end">
           <button
             type="button"
             class="btn"
-            data-reply="{{comment.id}}"
-            style="background-color: #fccd04;"
             data-bs-toggle="modal"
-          data-bs-target="#add-reply"
-          >Add Reply</button>
+            data-bs-target="#add-comment"
+            style="background-color: #fccd04;"
+          >Add Comment</button>
         </div>
       </div>
+    </section>
 
-      <div style="text-indent: 8em;">
-        {{#each comment.replies as |reply|}}
-          <h5>{{reply.content}} </h5>
-          <p style="text-indent: 9em;">-By:
-            {{reply.user.username}}
-            on
-            {{reply.created_at}}
-          </p>
-        {{/each}}
-        <hr />
-      </div>
-{{ log reply}}
-    {{/each}}
     
-  {{!-- COMMENT FORM --}}
-    <div
-      class="modal fade"
-      id="add-comment"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-labelledby="add-commentLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="add-commentLabel">New Comment</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+    {{! COMMENT THREAD }}
+    <section class="container card-body" style="text-indent: 4em;background-color: grey">
+      {{#each comments as |comment|}}
+        <div class="d-flex">
+          <div class="container-fluid">
+            <p class="mb-4">{{comment.content}} </p>
           </div>
-          <div class="modal-body">
-            <form class="new-comment-form">
+          {{#if loggedIn}}
+            <div class="container-fluid d-flex justify-content-end">
+              <button type="button" class="btn" id="post-del-btn">
+                <i
+                  class="bi-trash"
+                  style="font-size: 1.5rem; color: #d1e8e2;"
+                ></i>
+              </button>
+            </div>
 
-              <div class="mb-1">
-                <input type="hidden"
-                name="post-id"
-                value="{{id}}">
-                <label
-                  for="comment-content"
-                  class="col-form-label"
-                >Comment:</label>
-                <textarea class="form-control" id="comment-content"></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
+          {{/if}}
+        </div>
+
+        <div class="d-flex">
+          <p class="container-fluid font-italic" style="text-indent: 5em;">-By:
+            {{comment.user.username}}
+            on
+            {{comment.created_at}}
+          </p>
+          <div class="container-fluid d-flex justify-content-end">
             <button
               type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >Cancel</button>
-            <button
-              type="button"
-              class="btn"
-              id="submit-comment-btn"
+              class="btn mb-4"
+              data-reply="{{comment.id}}"
               style="background-color: #fccd04;"
-            >Submit</button>
+              data-bs-toggle="modal"
+              data-bs-target="#add-reply"
+            >Add Reply</button>
+          </div>
+        </div>
+        {{! REPLY THREAD }}
+        <ul class="card-footer" style="text-indent: 8em;background-color: lightblue">
+          {{#each comment.replies as |reply|}}
+            <li><p class="">{{reply.content}} </p>
+            <p class="font-italic" style="text-indent: 9em; ">-By:
+              {{reply.user.username}}
+              on
+              {{reply.created_at}}
+            </p></li>
+            
+          {{/each}}
+          
+        </ul>
+
+      {{/each}}
+
+      {{! COMMENT FORM }}
+      <div
+        class="modal fade"
+        id="add-comment"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="add-commentLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="add-commentLabel">New Comment</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form class="new-comment-form">
+
+                <div class="mb-1">
+                  <input type="hidden" name="post-id" value="{{id}}" />
+                  <label
+                    for="comment-content"
+                    class="col-form-label"
+                  >Comment:</label>
+                  <textarea
+                    class="form-control"
+                    id="comment-content"
+                  ></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >Cancel</button>
+              <button
+                type="button"
+                class="btn"
+                id="submit-comment-btn"
+                style="background-color: #fccd04;"
+              >Submit</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    {{!-- REPLY FORM --}}
-    <div
-      class="modal fade"
-      id="add-reply"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-labelledby="add-replyLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="add-replyLabel">New Reply</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form class="new-reply-form">
+      {{! REPLY FORM }}
+      <div
+        class="modal fade"
+        id="add-reply"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="add-replyLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="add-replyLabel">New Reply</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form class="new-reply-form">
 
-              <div class="mb-1">
-                <input type="hidden"
-                name="comment-id"
-                id="hidden-comment"
-                >
-                <label
-                  for="reply-content"
-                  class="col-form-label"
-                >Reply:</label>
-                <textarea class="form-control" id="reply-content"></textarea>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >Cancel</button>
-            <button
-              type="button"
-              class="btn"
-              id="submit-reply-btn"
-              style="background-color: #fccd04;"
-            >Submit</button>
+                <div class="mb-1">
+                  <input type="hidden" name="comment-id" id="hidden-comment" />
+                  <label
+                    for="reply-content"
+                    class="col-form-label"
+                  >Reply:</label>
+                  <textarea class="form-control" id="reply-content"></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >Cancel</button>
+              <button
+                type="button"
+                class="btn"
+                id="submit-reply-btn"
+                style="background-color: #fccd04;"
+              >Submit</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   </div>
-</div>
-
+</section>

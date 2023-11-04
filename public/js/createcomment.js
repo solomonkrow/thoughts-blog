@@ -10,7 +10,7 @@ const newCommentHandler = async (event) => {
     console.log(content);
 
     if (content) {
-        const response = await fetch(`/api/comments`, {
+        const response = await fetch('/api/comments', {
             method: 'POST',
             body: JSON.stringify({ content, post_id}),
             headers: {

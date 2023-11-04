@@ -9,13 +9,14 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body style="background-color: #116466;height: 100vh;">
     <header>
       <nav
         class="navbar navbar-expand-lg d-flex"
-        style="background-color: #2c3531; color:#fccd04"
+        style="background-color: #2c3531;"
       >
         <div class="container-fluid">
 
@@ -38,7 +39,7 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-
+        {{!-- ADD POST BUTTON --}}
           {{#if loggedIn}}
             <div class="container-fluid d-flex justify-content-center">
               <button
@@ -56,11 +57,11 @@
                 class="btn"
                 style="background-color: #fccd04;"
               >
-                <a class="nav-link" href="/signup">Signup to add post</a>
+                <a class="nav-link" href="/login">Login to add post</a>
               </button>
             </div>
           {{/if}}
-
+          {{!-- NEW POST FORM --}}
           <div
             class="modal fade"
             id="add-post"
@@ -112,28 +113,28 @@
 
           <div
             class="collapse navbar-collapse d-flex justify-content-end"
-            id="navbarNav"
-            style="color: #fccd04;"
-          >
-            <ul class="navbar-nav">
-
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
-
+            id="navbarNav">
+            <ul class="navbar-nav" style="color: #fccd04;">              
+                {{!-- NAVBAR LINKS --}}
               {{#if loggedIn}}
+              <li class="nav-item">
+                <a class="nav-link navlink" href="/">Home</a>
+              </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/user">Profile</a>
+                  <a class="nav-link navlink" href="/user">Profile</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" id="logout" href="/">Logout</a>
+                  <a class="nav-link navlink" id="logout" href="/">Logout</a>
                 </li>
               {{else}}
+              <li class="nav-item">
+                <a class="nav-link navlink" href="/">Home</a>
+              </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/login">Login</a>
+                  <a class="nav-link navlink" href="/login">Login</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/signup">Signup</a>
+                  <a class="nav-link navlink" href="/signup">Signup</a>
                 </li>
               {{/if}}
             </ul>
@@ -154,6 +155,7 @@
   ></script>
   {{#if loggedIn}}
     <script src="/js/logout.js"></script>
+    <script src="/js/signup.js"></script>
     <script src="/js/createpost.js"></script>
     <script src="/js/createcomment.js"></script>
     <script src="/js/createreply.js"></script>

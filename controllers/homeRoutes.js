@@ -67,7 +67,7 @@ router.get('/posts/:id', async (req, res) => {
 });
 
 // GET user posts for user view
-router.get('/user', async (req, res) => {
+/* router.get('/user', async (req, res) => {
     try {
         // Find the logged in user based on the session ID
         const postData = await Post.findAll({
@@ -83,6 +83,37 @@ router.get('/user', async (req, res) => {
         console.log(userPosts);
 
         res.render('user', {
+            ...userPosts,
+            loggedIn: req.session.loggedIn,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+}); */
+
+router.get('/user', async (req, res) => {
+    try {
+        // Find the logged in user based on the session ID
+        const userData = await User.findByPk(req.session.user_id, {
+            attributes: { exclude: ['password'] },
+            include: [{ model: Post }],
+        });
+
+        const user = userData.get({ plain: true });
+
+        const postData = await Post.findAll({
+            where: {
+                user_id: req.session.user_id
+            },
+            include: [
+                User,
+            ]
+        });
+
+        const userPosts = postData.map((posts) => posts.get({ plain: true }));
+
+        res.render('user', {
+            ...user,
             ...userPosts,
             loggedIn: req.session.loggedIn,
         });

@@ -1,7 +1,21 @@
-{{#if loggedIn}}
-
-{{/if}}
-
 {{log this}}
-<h1>WELCOME</h1>
-<h2> {{user.username}} </h2>
+<h1>WELCOME {{username}}</h1>
+
+{{#each posts as |post|}}
+<a href="/" style="text-decoration: none;">
+<div class="card blogpost-list">
+    <div class="card-body">
+        <div class="card-header flex-row justify-space-between">
+            <h2>{{post.title}}</h2>
+            <div>
+                Posted on {{format_date post.created_at}}
+            </div>
+        </div>
+        <p class="card-text">{{post.content}}</p>
+        {{!-- <a href="/editpost/{{post.id}}" class="btn btn-info btn-sm">Update Post</a>
+        <a class="btn btn-info btn-sm" data-id="{{post.id}}">Delete Post</a> --}}
+    </div>
+</div>
+</a>
+
+{{/each}}
