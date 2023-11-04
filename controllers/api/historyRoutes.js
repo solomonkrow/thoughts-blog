@@ -1,4 +1,4 @@
-const express = require('express');
+/* const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 
@@ -26,3 +26,4 @@ router.get('/numbersapi', async (req, res) => {
 });
 
 module.exports = router;
+ */

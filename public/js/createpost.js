@@ -23,17 +23,17 @@ const newPostHandler = async (event) => {
 const delPostHandler = async (event) => {
     console.log(event);
     // if (event.target.hasAttribute('data-id')) {
-        const id = event.target.getAttribute('data-id');
-        console.log(id);
-        const response = await fetch(`/api/posts/${id}`, {
-            method: 'DELETE',
-        });
+    const id = event.target.getAttribute('data-id');
+    console.log(id);
+    const response = await fetch(`/api/posts/${id}`, {
+        method: 'DELETE',
+    });
 
-        if (response.ok) {
-            document.location.replace('/');
-        } else {
-            alert('Failed to delete post');
-        }
+    if (response.ok) {
+        document.location.replace('/');
+    } else {
+        alert('Failed to delete post');
+    }
     // }
 };
 
