@@ -42,6 +42,11 @@ User.init(
                 len: [8, 16]
             }
         },
+        // TODO how do we address profile photos? Do we need a URL or ID. Multer?
+        /* profile_photoURL: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        } */
     },
     {
         hooks: {
