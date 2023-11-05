@@ -83,10 +83,10 @@ router.post('/logout', (req, res) => {
         }
         const imageUrl = req.file.path;
 
-        const savedImage = await Image.create({
-            imageUrl: imageUrl,
+//         const savedImage = await Image.create({
+//             imageUrl: imageUrl,
 
-        });
+//         });
 
         res.json({ imageUrl: savedImage.imageUrl });
     } catch (error) {
