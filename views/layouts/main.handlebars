@@ -10,6 +10,16 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body style="background-color: #116466;height: 100vh;">
@@ -143,7 +153,13 @@
       </nav>
     </header>
     <main>
-
+      <a 
+    href="#" 
+    id="back-to-top"
+    class="btn  btn-lg back-to-top"
+    role="button">
+    <i class="fas fa-chevron-up"></i>
+    </a>
       {{{body}}}
 
     </main>
@@ -153,12 +169,15 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"
   ></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="/js/scrolltop.js"></script>
   {{#if loggedIn}}
+
     <script src="/js/logout.js"></script>
     <script src="/js/signup.js"></script>
     <script src="/js/createpost.js"></script>
     <script src="/js/createcomment.js"></script>
     <script src="/js/createreply.js"></script>
-    <script src=""></script>
   {{/if}}
 </html>

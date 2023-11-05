@@ -9,3 +9,21 @@ ul {
     /* arrow-90deg-up */
     list-style-position: inside;
 }
+
+.back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 60px;
+    display: none;
+    z-index: 5;
+    border: solid 2px #fccd04;
+    color: #fccd04;
+    background-color: #2c3531;
+}
+
+.back-to-top:hover {
+    z-index: 5;
+    border: solid 2px #2c3531;
+    color: #2c3531;
+    background-color: #fccd04;
+}
