@@ -96,7 +96,7 @@ router.get('/user', async (req, res) => {
         // Find the logged in user based on the session ID
         const userData = await User.findByPk(req.session.user_id, {
             attributes: { exclude: ['password'] },
-            include: [{ model: Post }],
+            include: [{ model: Post }, { model: Comment}, { model: Reply}],
         });
 
         const user = userData.get({ plain: true });
@@ -112,9 +112,33 @@ router.get('/user', async (req, res) => {
 
         const userPosts = postData.map((posts) => posts.get({ plain: true }));
 
+        const commentData = await Comment.findAll({
+            where: {
+                user_id: req.session.user_id
+            },
+            include: [
+                User,
+            ]
+        });
+
+        const userComments = commentData.map((comments) => comments.get({ plain: true }));
+
+        const replyData = await Reply.findAll({
+            where: {
+                user_id: req.session.user_id
+            },
+            include: [
+                User,
+            ]
+        });
+
+        const userReply = replyData.map((replies) => replies.get({ plain: true }));
+
         res.render('user', {
             ...user,
             ...userPosts,
+            ...userComments,
+            ...userReply,
             loggedIn: req.session.loggedIn,
         });
     } catch (err) {

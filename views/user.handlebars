@@ -1,27 +1,69 @@
-{{log this}}
-<h1>WELCOME {{username}}</h1>
+{{!-- {{log this}} --}}
+<h1 class="m-4">Welcome {{username}}</h1>
+<hr />
+<h3 class="mx-5">Your Posts: </h3>
+{{!-- {{log posts}} --}}
+<details class="m-1" style="text-indent: 4em;">
+  {{#each posts as |post|}}
+    {{! sm: 576px|md: 768px|lg: 992px|xl: 1200px }}
+    <a
+      href="#"
+      class="card card col-sm-11 col-md-10 col-lg-9 col-xl-9 blogpost-list container-fluid mb-2"
+      style="text-decoration: none;"
+    >
 
-{{#each posts as |post|}}
-<a href="/" style="text-decoration: none;">
-<div class="card blogpost-list">
-    <div class="card-body">
-        <div class="card-header flex-row justify-space-between">
-            <h2>{{post.title}}</h2>
-            <div>
-                Posted on {{format_date post.created_at}}
-            </div>
-        </div>
-        <p class="card-text">{{post.content}}</p>
+      <div class="card-header">
+        <h2>{{post.title}}</h2>
         {{!-- <a href="/editpost/{{post.id}}" class="btn btn-info btn-sm">Update Post</a>
         <a class="btn btn-info btn-sm" data-id="{{post.id}}">Delete Post</a> --}}
-    </div>
-</div>
-</a>
+        <p>
+          Posted on
+          {{format_date post.created_at}}
+        </p>
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{post.content}}</p>
+      </div>
+    </a>
+  {{/each}}
+</details>
+<hr>
+<h3 class="mx-5">Your Comments: </h3>
+<details class="m-1" style="text-indent: 4em;">
+  {{!-- <section class="container-fluid col-11">
+    <div class="row row-cols-2"> --}}
+      {{#each comments as |comment|}}
 
-{{/each}}
+        <a
+          href="#"
+          class="card col-sm-11 col-md-10 col-lg-9 col-xl-9 container-fluid"
+          style="text-decoration: none;"
+        >
+          <div class="card-body">
+            <p class="card-text">{{comment.content}}</p>
+            <p> Posted on {{format_date comment.created_at}} </p>
+          </div>
+        </a>
 
-{{!-- {{#each comments as |comment|}}
-{{/each}}
+      {{/each}}
+    {{!-- </div>
+  </section>  --}}
 
-{{#each replies as |reply|}}
-{{/each}} --}}
+</details>
+<hr>
+<h3 class="mx-5">Your Replies: </h3>
+<details class="m-1" style="text-indent: 4em;">
+
+  {{#each replies as |reply|}}
+    <a
+      href="#"
+      class="card card col-sm-11 col-md-10 col-lg-9 col-xl-9 blogpost-list container-fluid mb-2"
+      style="text-decoration: none;"
+    >
+      <div class="card-body">
+        <p class="card-text">{{reply.content}}</p>
+        <p> Posted on {{format_date reply.created_at}} </p>
+      </div>
+    </a>
+  {{/each}}
+</details>
