@@ -21,20 +21,22 @@ const newPostHandler = async (event) => {
 
 // TODO verify route below
 const delPostHandler = async (event) => {
-    console.log(event);
-    // if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
-    console.log(id);
-    const response = await fetch(`/api/posts/${id}`, {
-        method: 'DELETE',
-    });
+    // Find the closest parent button of the clicked element within `.post-list`
+    const button = event.target.closest('button[data-id]');
+    if (button) {
+        const id = button.getAttribute('data-id');
+        console.log(id);
 
-    if (response.ok) {
-        document.location.replace('/');
-    } else {
-        alert('Failed to delete post');
+        const response = await fetch(`/api/posts/${id}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            document.location.replace('/');
+        } else {
+            alert('Failed to delete post');
+        }
     }
-    // }
 };
 
 document
@@ -49,10 +51,10 @@ document
     .querySelector('.post-list')
     .addEventListener('click', delPostHandler);
 
-document.addEventListener('click', (event) => {
-    event.preventDefault();
-    if (event.target.hasAttribute('data-id')) {
-        const postId = event.target.getAttribute('data-id');
-        document.querySelector('.post-list').value = postId;
-    }
-});
+// document.addEventListener('click', (event) => {
+//     event.preventDefault();
+//     if (event.target.hasAttribute('data-id')) {
+//         const postId = event.target.getAttribute('data-id');
+//         document.querySelector('.post-list').value = postId;
+//     }
+// });
