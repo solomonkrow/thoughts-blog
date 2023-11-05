@@ -3,7 +3,7 @@
 
   ## Description
 
-  An interactive blog sit that displays important historical events and allows user to add posts and comments with thoughts on the history, or any other topic. Intended to be an interactive community with a history focus.
+  An interactive blog site that displays important historical events and allows user to add posts and comments with thoughts on the event, or any other topic. Intended to be an interactive community with a history focus.
   
   ## Table of Contents
    
