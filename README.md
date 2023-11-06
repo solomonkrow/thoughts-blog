@@ -48,9 +48,5 @@
 
   If you have any questions or feedback can reach me at Github or email below
 
-  * Github : [Kevin Smith GitHub Link](https://github.com/solomonkrow)
+  * Github : [Josiah Thomas](https://github.com/solomonkrow)
   * E-mail : [solomonkrow@outlook.com](mailto:solomonkrow@outlook.com)
-  
-
-  
-
