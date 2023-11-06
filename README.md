@@ -48,8 +48,8 @@
 
   If you have any questions or feedback can reach me at Github or email below
 
-  * Github : [Kevin Smith GitHub Link](https://github.com/kevinsmithseven)
-  * E-mail : [kevinsmithseven@gmail.com](mailto:kevinsmithseven@gmail.com)
+  * Github : [Kevin Smith GitHub Link](https://github.com/solomonkrow)
+  * E-mail : [solomonkrow@outlook.com](mailto:solomonkrow@outlook.com)
   
 
   
